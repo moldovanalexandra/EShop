@@ -1,0 +1,92 @@
+﻿
+@model EShop.Models.Produs
+@{
+    ViewData["Title"] = "Create";
+}
+
+<br />
+<h2 class="text-info">Adauga produs nou</h2>
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div class="p-4 rounded border">
+        <div asp-validation-summary="ModelOnly" class="text-danger">
+
+        </div>
+        <h3>@ViewBag.message</h3>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Denumire"></label>
+            </div>
+            <div>
+                <input asp-for="Denumire" class="form-control" />
+            </div>
+            <span asp-validation-for="Denumire" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Brand"></label>
+            </div>
+            <div>
+                <input asp-for="Brand" class="form-control" />
+            </div>
+            <span asp-validation-for="Brand" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Image"></label>
+            </div>
+            <div>
+                <input asp-for="Image" class="form-control" type="file" />
+            </div>
+            <span asp-validation-for="Image" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Pret"></label>
+            </div>
+            <div>
+                <input asp-for="Pret" class="form-control" />
+            </div>
+            <span asp-validation-for="Pret" class="text-danger"></span>
+        </div>
+        @*<div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Stoc"></label>
+            </div>
+            <div>
+                <input asp-for="Stoc" class="form-control" />
+            </div>
+            <span asp-validation-for="Stoc" class="text-danger"></span>
+        </div>*@
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="EsteDisponibil"></label>
+            </div>
+            <div>
+                <input asp-for="EsteDisponibil" class="form-control" type="checkbox" />
+            </div>
+            <span asp-validation-for="EsteDisponibil" class="text-danger"></span>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="CategorieId"></label>
+            </div>
+            <div>
+                <select asp-for="CategorieId" asp-items="ViewBag.CategorieId" class="form-control"></select>
+                @*<input asp-for="CategorieId" class="form-control" />*@
+            </div>
+            <span asp-validation-for="CategorieId" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Save" />
+            <a asp-action="Index" class="btn btn-success">Inapoi la lista</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}

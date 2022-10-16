@@ -1,0 +1,91 @@
+﻿@using EShop.Models
+@model IEnumerable<Produs>
+@{
+    ViewData["Title"] = "Index";
+
+}
+
+<br />
+<br />
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">List Produse</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" class="btn btn-info">&nbsp; Produs Nou <i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+    </div>
+</div>
+<form method="post">
+    <div class="row">
+        <div class="col-3">
+            <input type="number" class="form-control" name="minim">
+        </div>
+        <div class="col-3">
+            <input type="number" class="form-control" name="maxim">
+        </div>
+        <div class="col-3">
+            <input type="submit" class="form-control" value="Cauta" class="btn btn-succes">
+        </div>
+        <div class="col-3"></div>
+    </div>
+</form>
+<br />
+<div>
+    <table class="table table-striped border" id="myTable">
+        <thead>
+            <tr class="table-info">
+                <th>
+                    @Html.DisplayNameFor(expression: c => c.Denumire)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(expression: c => c.Brand)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(expression: c => c.Pret)
+                </th>
+                @*<th>
+                    @Html.DisplayNameFor(expression: c => c.Stoc)
+                </th>*@
+                <th>
+                    @Html.DisplayNameFor(expression: c => c.EsteDisponibil)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(expression: c => c.Categorie.DenumireCategorie)
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Denumire</td>
+                    <td>@item.Brand</td>
+                    <td>@item.Pret</td>
+                    @*<td>@item.Stoc</td>*@
+                    <td>@item.EsteDisponibil</td>
+                    <td>@item.Categorie.DenumireCategorie</td>
+                    <td>
+                        <partial name="ButtonPartial" model="@item.Id" />
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+
+
+@section scripts{
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+
+}
+
